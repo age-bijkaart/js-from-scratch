@@ -33,9 +33,9 @@ similar point and advocates the use of shell scripts and npm, as discussed in a
 See also [another post](https://blog.jcoglan.com/2014/02/05/building-javascript-projects-with-make/)
 on the subject of using *make* as a build tool for web apps.
 
-We'll see how far I get. Up to now, I already discovered that trying to pipe the output of *Babel*
-(the command line version which translates JSX to *js*) directly (usin the efficient unix pipe **|**)
+We'll see how far I get. Up to now, I discovered that piping the output of *Babel*
+(the command line version which translates JSX to js) directly (using the efficient unix pipe **|**)
 into *Browserify* (which transpiles further to something contemporary browser can handle) leads to an
-**EPIPE** exception, i.e. it does not work. Perhaps because I provided the wrong option, we'll see.
+**EPIPE** exception, i.e. it does not work. Perhaps because I provided the wrong options, we'll see.
 
 
