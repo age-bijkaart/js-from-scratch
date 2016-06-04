@@ -38,4 +38,4 @@ We'll see how far I get. Up to now, I discovered that piping the output of *Babe
 into *Browserify* (which transpiles further to something contemporary browsers can handle) leads to an
 **EPIPE** exception, i.e. it does not work. Perhaps because I provided the wrong options, we'll see.
 
-
+[Step 1](./01-hello-world) The simplest javascript fragment.
