@@ -11,9 +11,14 @@ modified by javascript code running in the browser).
 
 The translation of the React and es2015 is done by the browser. That is why the babel stuff is
 downloaded as a script as well. Es2015 is a new version of javascript that is not yet supported by
-most browsers. Note the type attribute in <script type="text/babel"> which tells the browser to use
-babel first and then execute the result of the transpilation (a 'transpiler' is a 'source to source'
-compiler).
+most browsers. Note the type attribute in 
 
+```
+<script type="text/babel">
+```
 
+which tells the browser to use
+babel first and then execute the result of the transpilation (a
+[transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)  
+is a source to source compiler).
 
