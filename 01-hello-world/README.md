@@ -56,3 +56,10 @@ which tells the browser to use babel first and then execute the result of the tr
 [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)  
 is a source to source compiler).
 
+# To test
+
+```
+make
+```
+will start [http-server](https://www.npmjs.com/package/http-server). Point your browser to the indicated url.
+ 
