@@ -27,12 +27,13 @@ The javascript code to show 'Hello world' using a React component is embedded in
 
 If you know nothing about React but a bit about javascript, 
 [this](http://www.jackcallister.com/2015/01/05/the-react-quick-start-guide.html) tutorial 
-is quick and to the point in explaining components, rendering, state and the virtual DOM tree (the DOM
-tree is a hierarchical structure corresponding to the html of the page, it can be accessed and
+is quick and to the point in explaining components, rendering, state and the virtual DOM tree (the 
+[real DOM tree](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
+is a hierarchical structure corresponding to the html of the page, it can be accessed and
 modified by javascript code running in the browser).
 
 
-The translation of the React and es2015 constructs is done by the browser. That is why, next to the
+The translation of the React and Es2015 constructs is done by the browser. That is why, next to the
 react scripts
 ```
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
