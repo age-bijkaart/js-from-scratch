@@ -3,7 +3,12 @@ ME=$(shell whoami)
 .PHONY: all npm node-js mongodb npm http-server cvsignore
 
 all: nodejs-latest-version install-node node-js npm \
-	http-server cvsignore mongodb
+	http-server mongodb
+	@echo "extras: make phantomjs"
+
+# will not be made by 'make all'
+phantomjs: install-phantomjs
+	./install-phantomjs
 
 node-js: install-node
 	./install-node
@@ -20,9 +25,5 @@ npm: node-js
 http-server:
 	npm install http-server -g
 	@cat http-server-manual.txt
-
-cvsignore:
-	echo "node_modules" >${HOME}/.cvsignore
-	echo "build" >>${HOME}/.cvsignore
 
 

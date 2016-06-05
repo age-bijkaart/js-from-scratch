@@ -62,4 +62,35 @@ is a source to source compiler).
 make
 ```
 will start [http-server](https://www.npmjs.com/package/http-server). Point your browser to the indicated url.
- 
+
+It is also possible to do
+```
+make check
+```
+
+which will retrieve the page using firefox and save it as 'test.html' and then compare it to the
+expected 'expected.html'. Unfortunately, [wget](https://www.gnu.org/software/wget/) is not
+usable to retrieve the page since [wget](https://www.gnu.org/software/wget/) does not interpret
+javascript.
+
+Also unfortunately, neither firefox nor chromium provide the ability to retrieve a page and save it,
+all from the command line. Fortunately, there is 
+[save-page-as](https://github.com/abiyani/automate-save-page-as)
+which *small bash script simulates a sequence of key presses which opens a given url in the browser,
+save the page (Ctrl+S), and close the browser tab/window (Ctrl+F4)* (from
+[save-page-as](https://github.com/abiyani/automate-save-page-as)).
+
+[Save-page-as](https://github.com/abiyani/automate-save-page-as)) depends on
+[xdotool](http://www.semicomplete.com/projects/xdotool/) which is available as a ubuntu package:
+
+```
+sudo apt-get xdotool
+```
+and to get the 
+[save-page-as](https://github.com/abiyani/automate-save-page-as))
+script:
+```
+wget https://github.com/abiyani/automate-save-page-as/raw/master/save_page_as
+chmod +x save_page_as
+```
+
