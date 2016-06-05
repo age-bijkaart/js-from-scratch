@@ -13,12 +13,12 @@ bin=/usr/local/bin
 # Where the phantomjs download and 'content.js' will live
 src=/usr/local/src
 #
-cd ${src}
 rm -fr ${src}/${phantom_version}
 rm -fr ${src}/phantomjs
 rm -f ${bin}/phantomjs
 [ -f ${src}/${archive} ] ||
-  wget https://bitbucket.org/ariya/phantomjs/downloads/${archive} && tar xjf ${archive} || exit 1;
+  wget --directory-prefix ${src} https://bitbucket.org/ariya/phantomjs/downloads/${archive} &&
+  tar -C ${src} -xjf ${src}/${archive} || exit 1;
 ln -s ${src}/${phantom_version}/bin/phantomjs ${bin}/phantomjs && 
   ln -s ${src}/${phantom_version} ${src}/phantomjs || exit 1;
 
@@ -57,4 +57,19 @@ ${bin}/phantomjs ${src}/phantomjs/content.js $1
 EOF
 
 chmod +x ${bin}/phantomjs_get
+
+# 'phantomjs timing.js url' prints a nice timed trace of page loading
+cp timing.js ${src}/phantomjs
+
+# 'phantomjs_time url' will do the same
+cat >${bin}/phantomjs_time <<\EOF
+#!/bin/bash
+bin=/usr/local/bin
+src=/usr/local/src
+[ $# -eq 1 ] || { echo "usage: phantomjs_time url"; exit 1; }
+${bin}/phantomjs ${src}/phantomjs/timing.js $1
+EOF
+
+chmod +x ${bin}/phantomjs_time
+
 
