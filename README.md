@@ -23,6 +23,6 @@ on the subject of using *make* as a build tool for web apps and a concrete [exam
 
 We'll see how far this gets.
 
-[Step 0](./Install) Installing tools
-[Step 1](./01-hello-world) The simplest React javascript fragment.
+- [Step 0](./Install) Installing tools
+- [Step 1](./01-hello-world) The simplest React javascript fragment.
 
