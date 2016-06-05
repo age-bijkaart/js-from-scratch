@@ -103,7 +103,7 @@ Here is what *phantomjs_get* retrieves.
 ```
 
 Note how the Hello instance has been rendered as a
-`<h1>` node under the `<div id="app">` node, exactly as prescrived by the javascript line
+`<h1>` node under the `<div id="app">` node, exactly as prescribed by the javascript line
 ```
 ReactDOM.render( <Hello />, document.getElementById('app'));`.
 ```
