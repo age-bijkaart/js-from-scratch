@@ -1,7 +1,7 @@
 #!/bin/bash
 usage="uninstall-mongodb [-f] -- -f will remove data & log"
 echo "usage: ${usage}"
-set -x
+# set -x
 [ $# -eq 1 ] && [ "$1"='-f' ] && sudo rm -fr /var/lib/mongodb /var/log/mongodb
 sudo systemctl stop mongodb || echo "mongodb was not running?"
 sudo apt-get -y remove mongodb-org

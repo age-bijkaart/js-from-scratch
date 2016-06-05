@@ -1,6 +1,6 @@
 ME=$(shell whoami)
 #
-.PHONY: all npm node-js mongodb npm http-server cvsignore
+.PHONY: all npm node-js mongodb npm http-server
 
 all: nodejs-latest-version install-node node-js npm \
 	http-server mongodb
