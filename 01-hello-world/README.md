@@ -27,11 +27,15 @@ The javascript code to show 'Hello world' using a React component is embedded in
 
 If you know nothing about React but a bit about javascript, 
 [this](http://www.jackcallister.com/2015/01/05/the-react-quick-start-guide.html) tutorial 
-is quick and to the point in explaining components, rendering, state and the virtual DOM tree (the 
-[real DOM tree](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
-is a hierarchical structure corresponding to the html of the page, it can be accessed and
-modified by javascript code running in the browser).
+is quick and to the point in explaining components, rendering, state and the virtual DOM tree. 
+The [real DOM tree](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
+is a tree structure corresponding to the html of the page, it can be accessed and
+modified by javascript code running in the browser. One of the advantages of using React to do this
+is that it minimizes actual changes
+since React diffs the virtual and real DOM and only makes changes that are necessary to sync  the real and virtual DOM, making the app look snappier on the screen.
 
+[Es2015](https://babeljs.io/docs/learn-es2015/) is a new version of javascript
+that is not yet supported by most browsers.
 
 The translation of the React and Es2015 constructs is done by the browser. That is why, next to the
 react scripts
@@ -43,8 +47,7 @@ also the babel stuff
 ```
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
 ```
-is downloaded as a script. [Es2015](https://babeljs.io/docs/learn-es2015/) is a new version of javascript
-that is not yet supported by most browsers.
+is downloaded.
 
 Note the type attribute in 
 
@@ -63,34 +66,45 @@ make
 ```
 will start [http-server](https://www.npmjs.com/package/http-server). Point your browser to the indicated url.
 
-It is also possible to do
-```
-make check
-```
-
-which will retrieve the page using firefox and save it as 'test.html' and then compare it to the
-expected 'expected.html'. Unfortunately, [wget](https://www.gnu.org/software/wget/) is not
-usable to retrieve the page since [wget](https://www.gnu.org/software/wget/) does not interpret
-javascript.
-
-Also unfortunately, neither firefox nor chromium provide the ability to retrieve a page and save it,
-all from the command line. Fortunately, there is 
-[save-page-as](https://github.com/abiyani/automate-save-page-as)
-which *small bash script simulates a sequence of key presses which opens a given url in the browser,
-save the page (Ctrl+S), and close the browser tab/window (Ctrl+F4)* (from
-[save-page-as](https://github.com/abiyani/automate-save-page-as)).
-
-[Save-page-as](https://github.com/abiyani/automate-save-page-as)) depends on
-[xdotool](http://www.semicomplete.com/projects/xdotool/) which is available as a ubuntu package:
+If you installed [Phantomjs](http://phantomjs.org/) along with the [phantomjs_get](https://github.com/age-bijkaart/js-from-scratch/tree/master/Install) script, it is also possible
+to do
 
 ```
-sudo apt-get xdotool
+make check && echo "OK"
 ```
-and to get the 
-[save-page-as](https://github.com/abiyani/automate-save-page-as))
-script:
+
+which will start http-server in the background, retrieve the page using *phantomjs_get* and 
+save it as 'test.html' and finally compare it to the
+expected 'correct-response.html'. 
+
+Here is what *phantomjs_get* retrieves. 
+
 ```
-wget https://github.com/abiyani/automate-save-page-as/raw/master/save_page_as
-chmod +x save_page_as
+<!DOCTYPE html><html><head>
+    <title>helloworld</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
+  </head>
+  <body>
+    <div id="app"><h1 data-reactid=".0">Hello world!</h1></div>
+    <script type="text/babel">
+     var Hello = React.createClass({
+       render: function() {
+         return <h1>Hello world!</h1>;
+       } 
+     });
+
+     ReactDOM.render( <Hello />, document.getElementById('app'));
+    </script>
+  
+
+</body></html>
+```
+
+Note how the Hello instance has been rendered as a
+`<h1>` node under the `<div id="app">` node, exactly as prescrived by the javascript line
+```
+ReactDOM.render( <Hello />, document.getElementById('app'));`.
 ```
 
