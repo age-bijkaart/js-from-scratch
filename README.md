@@ -1,10 +1,11 @@
 # js-from-scratch
 
-A big help to understand many javascript quirks it to quickly see how its
+A big help to understand many javascript quirks it to understand how its
 interpreter is single-threaded with a main loop processing events, see
 [here](https://developer.mozilla.org/en/docs/Web/JavaScript/EventLoop).
 
-See [Install](./Install) for a Makefile that installs a javscript environment that lets you develop web applications, both front and back end.
+See [Install](./Install) for a Makefile that installs a javascript environment
+that lets you develop web applications, both front and back end.
 
 This is actually an experiment to see how far I can get with just bash, the venerable
 [make](https://www.gnu.org/software/make/manual/make.html) for handling dependencies, and
