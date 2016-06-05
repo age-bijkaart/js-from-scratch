@@ -56,6 +56,6 @@ yields
    722: about:blank: initialized
    722: about:blank: DOMContentLoaded
 ```
-when as output of `make timing` in the [01-hello-world](https://github.com/age-bijkaart/js-from-scratch/tree/master/01-hello-world).
-
+when the server from [01-hello-world](https://github.com/age-bijkaart/js-from-scratch/tree/master/01-hello-world)
+is running.
 
