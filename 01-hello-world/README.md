@@ -15,6 +15,7 @@ The javascript code to show 'Hello world' using a React component is embedded in
     <script type="text/babel">
      var Chat = React.createClass({
        render: function() {
+         console.log('rendering');
          return <h1>Hello world!</h1>;
        } 
      });
@@ -73,11 +74,11 @@ to do
 make check && echo "OK"
 ```
 
-which will start http-server in the background, retrieve the page using *phantomjs_get* and 
-save it as 'test.html' and finally compare it to the
-expected 'correct-response.html'. 
+which will start `http-server` in the background, retrieve the page using `phantomjs_get` and 
+save it as `test.html` and finally compare it to the
+expected `correct-response.html`. 
 
-Here is what *phantomjs_get* retrieves. 
+Here is what `phantomjs_get` retrieves. 
 
 ```
 <!DOCTYPE html><html><head>
@@ -91,6 +92,7 @@ Here is what *phantomjs_get* retrieves.
     <script type="text/babel">
      var Hello = React.createClass({
        render: function() {
+         console.log('rendering');
          return <h1>Hello world!</h1>;
        } 
      });
@@ -106,5 +108,38 @@ Note how the Hello instance has been rendered as a
 `<h1>` node under the `<div id="app">` node, exactly as prescribed by the javascript line
 ```
 ReactDOM.render( <Hello />, document.getElementById('app'));`.
+```
+The trace output from the line
+```
+console.log('rendering');
+```
+can be seen in the output of
+```
+make timing
+```
+which also illustrates that it takes rather a long time to bring up the page, but that the time needed
+by react to do the actual rendering is a negligible part of the total. 
+
+Here is the output:
+```
+     0: http://127.0.0.1:8080: START
+     0: http://127.0.0.1:8080: requesting download of http://127.0.0.1:8080/
+     1: http://127.0.0.1:8080: loading started
+     4: http://127.0.0.1:8080: requesting download of https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js
+     4: http://127.0.0.1:8080: requesting download of https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js
+     4: http://127.0.0.1:8080: requesting download of https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js
+     4: http://127.0.0.1:8080/: http://127.0.0.1:8080/ downloaded
+   131: http://127.0.0.1:8080/: https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js downloaded
+   349: http://127.0.0.1:8080/: https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js downloaded
+   362: http://127.0.0.1:8080/: https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js downloaded
+   363: http://127.0.0.1:8080/: initialized
+   462: http://127.0.0.1:8080/: DOMContentLoaded
+   492: http://127.0.0.1:8080/: rendering
+   508: http://127.0.0.1:8080/: finished loading
+   508: http://127.0.0.1:8080/: DONE
+   509: http://127.0.0.1:8080/: initialized
+   509: http://127.0.0.1:8080/: DOMContentLoaded
+   509: about:blank: initialized
+   509: about:blank: DOMContentLoaded
 ```
 
