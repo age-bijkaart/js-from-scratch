@@ -6,6 +6,7 @@ The javascript code to show 'Hello world' using a React component is embedded in
 <!DOCTYPE html>
 <html>
   <head>
+    <title>helloworld</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
@@ -13,14 +14,14 @@ The javascript code to show 'Hello world' using a React component is embedded in
   <body>
     <div id="app"></div>
     <script type="text/babel">
-     var Chat = React.createClass({
+     var Hello = React.createClass({
        render: function() {
          console.log('rendering');
          return <h1>Hello world!</h1>;
        } 
      });
 
-     ReactDOM.render( <Chat />, document.getElementById('app'));
+     ReactDOM.render( <Hello />, document.getElementById('app'));
     </script>
   </body>
 </html>
