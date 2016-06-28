@@ -1,5 +1,5 @@
 #!/bin/bash
-# set -x
+set -x
 #
 # PhantomJS is a headless WebKit scriptable with a JavaScript API
 # We use it to retrieve the DOM (after javascript processing)

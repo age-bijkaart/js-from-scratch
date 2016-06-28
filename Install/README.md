@@ -6,28 +6,28 @@ Just typing
 make
 ```
 
-will install nodejs, npm, mongodb globally, i.e. in /usr/local/bin and friends. You can install
-things separately as well, e.g.
-
-```
-make mongodb
-```
-
-[Phantomjs](http://phantomjs.org/) could be interesting to automate checking that the generated DOM
-is according to our expectations. Do
+will install nodejs, npm, mongodb, phantomjs globally, i.e. in /usr/local/bin and friends. You can install
+things separately as well, e.g. the following will all work as expected.
 
 ```
 make phantomjs
+make node-js
+make mongodb
+make npm
+make http-server
 ```
 
-to install it. This also installs a convenience script that accesses a url and writes the contents on
+[Phantomjs](http://phantomjs.org/) is included in the hope that it will  be interesting to automate checking
+that the generated DOM in web applications is according to our expectations. 
+With [phantomjs](http://phantomjs.org/), we also include two trivial scripts: phantomjs\_get and
+phantomjs\_time. The first accesses its url argument and writes the contents on
 stdout, e.g.
 
 ```
 phantomjs_get "http://127.0.0.1:8080"
 ```
 
-and another one that produces a timed trace of the loading of a url. E.g.
+while the second one produces a timed trace of the loading of its url argument. E.g.
 
 ```
 phantomjs_time "http://127.0.0.1:8080"
@@ -56,6 +56,7 @@ yields
    722: about:blank: initialized
    722: about:blank: DOMContentLoaded
 ```
+
 when the server from [01-hello-world](https://github.com/age-bijkaart/js-from-scratch/tree/master/01-hello-world)
 is running.
 
