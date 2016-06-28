@@ -1,3 +1,4 @@
+#!/usr/local/bin/shebang phantomjs $< $1
 // Show some timing results for loading a url with phantomjs
 
 var args = require('system').args;

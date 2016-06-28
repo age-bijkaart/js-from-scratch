@@ -23,53 +23,9 @@ ln -s ${src}/${phantom_version}/bin/phantomjs ${bin}/phantomjs &&
   ln -s ${src}/${phantom_version} ${src}/phantomjs || exit 1;
 
 
-cat >${src}/phantomjs/content.js <<\EOF
-var system = require('system');
-
-var args = system.args;
-if (system.args.length == 2) 
-  url = system.args[1];
-else {
-  console.log("usage: phantomjs contents.js url");
-  phantom.exit(1);
-}
-
-var webPage = require('webpage');
-var page = webPage.create();
-
-page.open(url, function (status) { 
-  if (status=='success') {
-    console.log(page.content); 
-    phantom.exit(0); 
-  }
-  else
-    phantom.exit(2);
-});
-EOF
-
-# Convenience script 
-cat >${bin}/phantomjs_get <<\EOF
-#!/bin/bash
-bin=/usr/local/bin
-src=/usr/local/src
-[ $# -eq 1 ] || { echo "usage: phantomjs_get url"; exit 1; }
-${bin}/phantomjs ${src}/phantomjs/content.js $1
-EOF
-
-chmod +x ${bin}/phantomjs_get
-
-# 'phantomjs timing.js url' prints a nice timed trace of page loading
-cp timing.js ${src}/phantomjs
-
-# 'phantomjs_time url' will do the same
-cat >${bin}/phantomjs_time <<\EOF
-#!/bin/bash
-bin=/usr/local/bin
-src=/usr/local/src
-[ $# -eq 1 ] || { echo "usage: phantomjs_time url"; exit 1; }
-${bin}/phantomjs ${src}/phantomjs/timing.js $1
-EOF
-
-chmod +x ${bin}/phantomjs_time
+# 'phantomjs_get url' prints the contents of the url
+# 'phantomjs_time url' prints a nice timed trace of page loading
+cp phantomjs_get phantomjs_time  ${bin}
+chmod +x ${bin}/phantomjs_get ${bin}/phantomjs_time
 
 

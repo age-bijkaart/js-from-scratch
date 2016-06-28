@@ -2,8 +2,7 @@ ME=$(shell whoami)
 #
 .PHONY: all npm node-js mongodb npm http-server
 
-all: nodejs-latest-version install-node node-js npm \
-	http-server mongodb
+all: nodejs-latest-version install-node node-js npm http-server mongodb
 	@echo "extras: make phantomjs"
 
 # will not be made by 'make all'

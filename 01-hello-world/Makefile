@@ -12,7 +12,7 @@ check:
 	@http-server & pid=$$! ; echo -n "waiting for 2 seconds for server to start.. "; sleep 2; echo; \
 		phantomjs_get "http://127.0.0.1:8080" >test.html ; \
 	kill $$pid; \
-  diff correct-response.html test.html
+  diff correct-response.html test.html && echo "OK" || echo "ERROR"
 clean:
 	rm -f test.html
 timing:

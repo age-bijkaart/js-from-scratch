@@ -1,0 +1,22 @@
+#!/usr/local/bin/shebang phantomjs $< $1
+var system = require('system');
+
+var args = system.args;
+if (system.args.length == 2) 
+  url = system.args[1];
+else {
+  console.log("usage: phantomjs contents.js url");
+  phantom.exit(1);
+}
+
+var webPage = require('webpage');
+var page = webPage.create();
+
+page.open(url, function (status) { 
+  if (status=='success') {
+    console.log(page.content); 
+    phantom.exit(0); 
+  }
+  else
+    phantom.exit(2);
+});
