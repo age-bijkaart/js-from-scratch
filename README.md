@@ -25,4 +25,5 @@ We'll see how far this gets.
 
 - [Step 0](./Install) Installing tools
 - [Step 1](./01-hello-world) The simplest React javascript fragment.
+- [Step 2](./02-server-bundling-and-state) Server bundling and stateful React components
 
