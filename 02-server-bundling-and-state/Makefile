@@ -53,3 +53,8 @@ clean:
 test: all
 	http-server
 
+timing: all
+	@which phantomjs_time || { echo "not found: phantomjs_time"; exit 1; }
+	@http-server & pid=$$! ; echo -n "waiting for 2 seconds for server to start.. "; sleep 2; echo; \
+		phantomjs_time "http://127.0.0.1:8080"; \
+	kill $$pid; \
