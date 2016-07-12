@@ -1,12 +1,13 @@
 # Using make to automatically transform `.jsx` files to `.js`
 
-To test: `'make test'` and point the browser as indicated.
-Type `make clean` to remove all that can be automatically generated.
+* `make` to transform the source to a single `.js` bundle
+* `make test` and point the browser as indicated
+* `make clean` to remove all that can be automatically generated
 
 ## Using make
 
-In this second-most-simple example app, `.jsx` files are converted to `.js` files 'automatically, thanks
-`babel` and the `Makefile`.
+In this second-most-simple example app, `.jsx` files are converted to `.js` files on the server, using
+`babel` and `make`.
 
 The following `Makefile` fragment ensures that, if needed, `babel` will be installed and the
 appropriate presets (`'react'` and `'es2015'`) wil be set in `.babelrc`:
