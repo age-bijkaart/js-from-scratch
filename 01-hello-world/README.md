@@ -2,7 +2,7 @@
 
 The javascript code to show 'Hello world' using a React component is embedded in index.html.
 
-```
+``` html
 <!DOCTYPE html>
 <html>
   <head>
@@ -41,19 +41,19 @@ that is not yet supported by most browsers.
 
 The translation of the React and Es2015 constructs is done by the browser. That is why, next to the
 react scripts
-```
+``` html
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
 ```
 also the babel stuff
-```
+``` html
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
 ```
 is downloaded.
 
 Note the type attribute in 
 
-```
+``` html
 <script type="text/babel">
 ```
 
@@ -63,7 +63,7 @@ is a source to source compiler).
 
 # To test
 
-```
+``` bash
 make
 ```
 will start [http-server](https://www.npmjs.com/package/http-server). Point your browser to the indicated url.
@@ -71,7 +71,7 @@ will start [http-server](https://www.npmjs.com/package/http-server). Point your 
 If you installed [Phantomjs](http://phantomjs.org/) along with the [phantomjs_get](https://github.com/age-bijkaart/js-from-scratch/tree/master/Install) script, it is also possible
 to do
 
-```
+``` bash
 make check && echo "OK"
 ```
 
@@ -81,7 +81,7 @@ expected `correct-response.html`.
 
 Here is what `phantomjs_get` retrieves. 
 
-```
+``` html
 <!DOCTYPE html><html><head>
     <title>helloworld</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
@@ -107,15 +107,15 @@ Here is what `phantomjs_get` retrieves.
 
 Note how the Hello instance has been rendered as a
 `<h1>` node under the `<div id="app">` node, exactly as prescribed by the javascript line
-```
+``` javascript
 ReactDOM.render( <Hello />, document.getElementById('app'));`.
 ```
 The trace output from the line
-```
+``` javascript
 console.log('rendering');
 ```
 can be seen in the output of
-```
+``` bash
 make timing
 ```
 which also illustrates that it takes rather a long time to bring up the page, but that the time needed
