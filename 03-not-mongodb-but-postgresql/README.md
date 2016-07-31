@@ -233,7 +233,16 @@ which provides us with the list of databases in the cluster:
 (4 rows)
 </pre>
 
-And we can login as user 'js', provided we connect to her database.
+And we can login as user 'js', provided we connect to her database. This
+type of authentication, where Postgres thrust the operating system to
+have authenticated the user (with the same name for the os as for
+Postgresql) is called, somewhat mysteriously,  
+[Peer
+authentication](https://www.postgresql.org/docs/9.1/static/auth-methods.html), Section 19.3.7. Note that for this authentication method, Postgresql does not need a user password.
+There are lots of other possible authentication methods, but this one
+will do for a simple server that is only accessed locally through unix
+sockets. See [the next chapter](../05-pg-promise/README.md) for more
+information on how to connect from javascript or other programs.
 
 ```
 me@server$ sudo -u js psql --dbname=js
@@ -243,7 +252,6 @@ Type "help" for help.
 js=> 
 
 ```
-
 Note that without the *sudo*, we cannot connect as postgres user *js* to the *js* database:
 ```
 me@server$ psql --username=js --dbname=js
