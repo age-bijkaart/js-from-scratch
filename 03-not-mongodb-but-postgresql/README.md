@@ -207,7 +207,7 @@ Just as for Linux, it is not a good idea to be superuser all the time. Thus we c
 sudo useradd js
 sudo passwd js
 sudo -u postgres createuser --createdb js
-'''
+```
 where *--createdb* allows the new user to create his own databases. 
 
 The script [pg-adduser](./pg-adduser.sh) does all this (create Linux and Postgres user)
@@ -218,7 +218,7 @@ and creates a database of the same name as the new user.
 sudo -u postgres psql --command="\l"
 ```
 which provides us with the list of databases in the cluster:
-```
+<pre>
                                   List of databases
    Name    |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
 -----------+----------+----------+-------------+-------------+-----------------------
@@ -229,9 +229,8 @@ which provides us with the list of databases in the cluster:
  template1 | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
            |          |          |             |             | postgres=CTc/postgres
 (4 rows)
+</pre>
 
-
-```
 And we can login as user 'js', provided we connect to her database.
 
 ```
