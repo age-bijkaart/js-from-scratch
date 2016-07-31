@@ -155,8 +155,8 @@ After 'make', the directory will contain a number of more or less useful *bash* 
 - *uninstall-pg* completely remove the Postgresql installation
 - *pg-listdbs* list the databases in the cluster (see below)
 - *pg-listusers* lists the Postgresql users
-- *pg-adduser name* add a Postgresql user and a database of the same name
-- *pg-deluser name* remove the user and the corresponding database
+- *pg-adduser name passwd* add a Linux and a Postgresql user and a database, all of the same name (the passwd parameter is only used for the Linux user)
+- *pg-deluser name* remove the user (from both Linux and Postgresql) and the corresponding database
 - *pg-start*, *pg-stop*, *pg-status*: (re)start, stop and show status of
   the Postgresql server
 - *ddl.sh* create the accounts table and enable the pgcrypto module.
