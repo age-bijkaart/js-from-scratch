@@ -303,3 +303,41 @@ sudo -u ${USER} psql --dbname=${DB} <<\EOF
 EOF
 ```
 
+# Encrypting passwords
+
+Finally, it may be interesting to see how passwords are stored using
+encryption.
+
+The following script registers a new user using an *email* address and a
+*password*.
+``` bash
+#!/bin/bash
+USAGE="$0 email password"
+[ $# -eq 2 ] || { echo "$USAGE"; exit 1; }
+
+USER=js
+EMAIL=$1
+PASSWD=$2;
+sudo -u ${USER} psql --quiet --dbname=${DB} <<EOF
+  INSERT INTO account (email, password) VALUES
+    ('${EMAIL}', crypt('${PASSWD}', gen_salt('bf', 8)));
+EOF
+...
+```
+while here is how a password is checked at login time:
+```bash
+#!/bin/bash
+USAGE="$0 email password"
+[ $# -eq 2 ] || { echo "$USAGE"; exit 1; }
+
+USER=js
+EMAIL=$1
+PASSWD=$2;
+sudo -u ${USER} psql --quiet --tuples-only --dbname=${DB} <<EOF
+  SELECT count(id) 
+  FROM account 
+  WHERE email='${EMAIL}' AND password = crypt('${PASSWD}', password);
+EOF
+# output will be 1 if found, 0 otherwise
+```
+
