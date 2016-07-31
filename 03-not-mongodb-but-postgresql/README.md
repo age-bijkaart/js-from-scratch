@@ -1,4 +1,4 @@
-# Getting a database system with a javascript (node.js) interface
+# A database system with a javascript (node.js) interface
 
 There are several alternatives. The most popular seems to be [mongodb](https://docs.mongodb.com/manual/). 
 See the [introduction](https://docs.mongodb.com/getting-started/node/) for the 
