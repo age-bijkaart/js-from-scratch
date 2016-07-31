@@ -263,7 +263,9 @@ comments should clarify things.
 
 # The name of the linux/postgres user is the same as the name of her
 # database.
-USER=js DB=${USER}
+USER=js
+PASS=${USER}
+DB=${USER}
 
 # Verify that the ${USER} (and her database) exist, otherwise create
 # ${USER} and her DB
