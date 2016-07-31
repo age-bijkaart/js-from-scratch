@@ -146,20 +146,22 @@ layer on the basic interface [node-postgres](https://github.com/brianc/node-post
 Just typing 'make' will
 - install and start Postgresql if not already installed 
 - create a new Postgresql user and a database of the same name
-- create an 'Accounts' table which contains a 'password' column that
-  will contain salted hashed passwords.
+- create an 'accounts' table which contains a 'password' column that
+  will contain [salted hashed
+  passwords](http://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html)
 - do some simple 'register' and login tests using bash scripts.
 
 After 'make', the directory will contain a number of more or less useful *bash* scripts:
-- *install-pg* install version 9.5.3 of Postgresql
-- *uninstall-pg* completely remove the Postgresql installation
-- *pg-listdbs* list the databases in the cluster (see below)
-- *pg-listusers* lists the Postgresql users
-- *pg-adduser name passwd* add a Linux and a Postgresql user and a database, all of the same name (the passwd parameter is only used for the Linux user)
-- *pg-deluser name* remove the user (from both Linux and Postgresql) and the corresponding database
-- *pg-start*, *pg-stop*, *pg-status*: (re)start, stop and show status of
+- [install-pg](./install-pg.sh) install version 9.5.3 of Postgresql
+- [uninstall-pg](./uninstall-pg.sh) completely remove the Postgresql installation
+- [pg-listdbs](./pg-listdbs.sh) list the databases in the cluster (see below)
+- [pg-listusers](./pg-listusers.sh) lists the Postgresql users
+- [pg-adduser name passwd](./pg-adduser.sh) add a Linux and a Postgresql user and a database, all of the same name (the passwd parameter is only used for the Linux user)
+- [pg-deluser name](./pg-deluser.sh) remove the user (from both Linux and Postgresql) and the corresponding database
+- [pg-start](./pg-start.sh), [pg-stop](./pg-stop.sh), [pg-status](./pg-status.sh): (re)start, stop and show status of
   the Postgresql server
-- *ddl.sh* create the accounts table and enable the pgcrypto module.
+- [ddl](./ddl.sh) create the accounts table and enable the
+  [pgcrypto](http://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html) module.
 
 Installing *postgresql* can be done using the 'install-pg' script or by typing `make pg`. This also
 starts the server wich a default
@@ -248,13 +250,13 @@ me@server$ psql --username=js --dbname=js
 psql: FATAL:  Peer authentication failed for user "js"
 ```
 
-See  [this stackoverflow page](https://stackoverflow.com/questions/17443379/psql-fatal-peer-authentication-failed-for-user-dev) for a discussion of the problem. A simpler solution is as was done here: have a Linux user corresponding to a Postgres user.
+See  [this stackoverflow page](https://stackoverflow.com/questions/17443379/psql-fatal-peer-authentication-failed-for-user-dev) for a discussion of the problem. Here we adopted a simpler solutino by having a local Linux user corresponding to each Postgresql user. 
 
 # Defining the accounts table
 
 This is done by the *ddl.sh* script which is reproduced below. The
 comments should clarify things.
-''' bash
+``` bash
 #!/bin/bash
 # See http://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
 # for a good and short explanation for the need of pgcrypto.
@@ -297,5 +299,5 @@ sudo -u ${USER} psql --dbname=${DB} <<\EOF
     email CITEXT UNIQUE NOT NULL,
     password TEXT NOT NULL);
 EOF
-'''
+```
 
