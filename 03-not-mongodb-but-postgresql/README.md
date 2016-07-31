@@ -203,18 +203,18 @@ postgres:x:123:131:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
 
 Just as for Linux, it is not a good idea to be superuser all the time. Thus we create a new user. It will be a Linux user to allow local (i.e. not via the network but via Unix sockets) logins:
 
-```
+``` bash
 sudo useradd js
 sudo passwd js
-...
 sudo -u postgres createuser --createdb js
-```
+'''
 where *--createdb* allows the new user to create his own databases. 
 
 The script [pg-adduser](./pg-adduser.sh) does all this (create Linux and Postgres user)
 and creates a database of the same name as the new user.
 
 ```
+./pg-useradd js js
 sudo -u postgres psql --command="\l"
 ```
 which provides us with the list of databases in the cluster:
