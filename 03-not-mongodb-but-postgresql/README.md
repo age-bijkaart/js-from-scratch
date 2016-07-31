@@ -309,6 +309,7 @@ EOF
 Finally, it may be interesting to see how passwords are stored using
 encryption.
 
+#### Register
 The following script registers a new user using an *email* address and a
 *password*.
 
@@ -326,6 +327,7 @@ sudo -u ${USER} psql --quiet --dbname=${DB} <<EOF
 EOF
 ...
 ```
+#### Login
 while here is how a password is checked at login time:
 ```bash
 #!/bin/bash
