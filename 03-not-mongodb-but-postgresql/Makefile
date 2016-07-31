@@ -17,5 +17,5 @@ test-sh: accounts
 	@./test-register-login && echo "$@: OK" || echo "$@: FAILED"
 
 clean:
-	@rm -fr $(node) package.json $(scripts) 
+	@rm -fr $(scripts) 
 
