@@ -141,7 +141,7 @@ For [Postgresql](https://www.postgresql.org/), on the other hand, there is a
 [pg-promise](https://github.com/vitaly-t/pg-promise) which is another
 layer on the basic interface [node-postgres](https://github.com/brianc/node-postgres).
 
-# Installation
+### Installation
 
 Just typing 'make' will
 - install and start Postgresql if not already installed 
@@ -252,13 +252,13 @@ psql: FATAL:  Peer authentication failed for user "js"
 
 See  [this stackoverflow page](https://stackoverflow.com/questions/17443379/psql-fatal-peer-authentication-failed-for-user-dev) for a discussion of the problem. Here we adopted a simpler solutino by having a local Linux user corresponding to each Postgresql user. 
 
-# Defining the accounts table
+### Defining an accounts table
 
-This is done by the *ddl.sh* script which is reproduced below. The
-comments should clarify things.
+This is done by the [ddl](./ddl.sh) script (DDL stands for "data definition language") which is
+reproduced below. The comments should clarify things.
 ``` bash
 #!/bin/bash
-# See http://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
+# See [here](http://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html)
 # for a good and short explanation for the need of pgcrypto.
 
 # The name of the linux/postgres user is the same as the name of her
@@ -273,11 +273,12 @@ X=$(./pg-listusers | grep ${USER} | awk '{print $1;}')
 [ "${X}" = ${USER} ]  || ./pg-adduser ${USER} ${PASS} || exit $?
 
 # See
-# https://www.postgresql.org/docs/current/static/client-authentication.html
+# [here](https://www.postgresql.org/docs/current/static/client-authentication.html)
 # and /etc/postgresql/9.5/main/pg_hba.conf for figuring out why the
-# following does not work.  PGPASSWORD=${USER}-password psql
-# --username=${USER} --dbname=${DB}
-
+# following does not work.  
+#
+#    PGPASSWORD=${USER}-password psql --username=${USER} --dbname=${DB}
+#
 # However, it seems that we can use 'ident' authentication: first we do
 # some 'global' stuff as the postgres 'root' user, which is called
 # 'postgres' (and who is also a Linux user, hence the 'sudo'. The 'DROP'
@@ -303,13 +304,14 @@ sudo -u ${USER} psql --dbname=${DB} <<\EOF
 EOF
 ```
 
-# Encrypting passwords
+### Encrypting passwords
 
 Finally, it may be interesting to see how passwords are stored using
 encryption.
 
 The following script registers a new user using an *email* address and a
 *password*.
+
 ``` bash
 #!/bin/bash
 USAGE="$0 email password"
@@ -319,8 +321,8 @@ USER=js
 EMAIL=$1
 PASSWD=$2;
 sudo -u ${USER} psql --quiet --dbname=${DB} <<EOF
-  INSERT INTO account (email, password) VALUES
-    ('${EMAIL}', crypt('${PASSWD}', gen_salt('bf', 8)));
+  INSERT INTO account (email, password) 
+           VALUES ('${EMAIL}', crypt('${PASSWD}', gen_salt('bf', 8)));
 EOF
 ...
 ```
@@ -334,9 +336,11 @@ USER=js
 EMAIL=$1
 PASSWD=$2;
 sudo -u ${USER} psql --quiet --tuples-only --dbname=${DB} <<EOF
+
   SELECT count(id) 
   FROM account 
   WHERE email='${EMAIL}' AND password = crypt('${PASSWD}', password);
+
 EOF
 # output will be 1 if found, 0 otherwise
 ```
