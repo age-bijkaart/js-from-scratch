@@ -144,23 +144,23 @@ layer on the basic interface [node-postgres](https://github.com/brianc/node-post
 ### Installation
 
 Just typing 'make' will
-- install and start Postgresql if not already installed 
-- create a new Postgresql user and a database of the same name
-- create an 'accounts' table which contains a 'password' column that
+* install and start Postgresql if not already installed 
+* create a new Postgresql user and a database of the same name
+* create an 'accounts' table which contains a 'password' column that
   will contain [salted hashed
   passwords](http://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html)
-- do some simple 'register' and login tests using bash scripts.
+* do some simple 'register' and login tests using bash scripts.
 
 After 'make', the directory will contain a number of more or less useful *bash* scripts:
-- [install-pg](./install-pg.sh) install version 9.5.3 of Postgresql
-- [uninstall-pg](./uninstall-pg.sh) completely remove the Postgresql installation
-- [pg-listdbs](./pg-listdbs.sh) list the databases in the cluster (see below)
-- [pg-listusers](./pg-listusers.sh) lists the Postgresql users
-- [pg-adduser name passwd](./pg-adduser.sh) add a Linux and a Postgresql user and a database, all of the same name (the passwd parameter is only used for the Linux user)
-- [pg-deluser name](./pg-deluser.sh) remove the user (from both Linux and Postgresql) and the corresponding database
-- [pg-start](./pg-start.sh), [pg-stop](./pg-stop.sh), [pg-status](./pg-status.sh): (re)start, stop and show status of
+* [install-pg](./install-pg.sh) install version 9.5.3 of Postgresql
+* [uninstall-pg](./uninstall-pg.sh) completely remove the Postgresql installation
+* [pg-listdbs](./pg-listdbs.sh) list the databases in the cluster (see below)
+* [pg-listusers](./pg-listusers.sh) lists the Postgresql users
+* [pg-adduser name passwd](./pg-adduser.sh) add a Linux and a Postgresql user and a database, all of the same name (the passwd parameter is only used for the Linux user)
+* [pg-deluser name](./pg-deluser.sh) remove the user (from both Linux and Postgresql) and the corresponding database
+* [pg-start](./pg-start.sh), [pg-stop](./pg-stop.sh), [pg-status](./pg-status.sh): (re)start, stop and show status of
   the Postgresql server
-- [ddl](./ddl.sh) create the accounts table and enable the
+* [ddl](./ddl.sh) create the accounts table and enable the
   [pgcrypto](http://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html) module.
 
 Installing *postgresql* can be done using the 'install-pg' script or by typing `make pg`. This also
