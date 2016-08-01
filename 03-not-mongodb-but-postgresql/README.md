@@ -326,10 +326,11 @@ The following script registers a new user using an *email* address and a
 USAGE="$0 email password"
 [ $# -eq 2 ] || { echo "$USAGE"; exit 1; }
 
-USER=js
+DBUSER=js
+DB=js
 EMAIL=$1
 PASSWD=$2;
-sudo -u ${USER} psql --quiet --dbname=${DB} <<EOF
+sudo -u ${DBUSER} psql --quiet --dbname=${DB} <<EOF
   INSERT INTO account (email, password) 
            VALUES ('${EMAIL}', crypt('${PASSWD}', gen_salt('bf', 8)));
 EOF
@@ -342,10 +343,11 @@ while here is how a password is checked at login time:
 USAGE="$0 email password"
 [ $# -eq 2 ] || { echo "$USAGE"; exit 1; }
 
-USER=js
+DBUSER=js
+DB=js
 EMAIL=$1
 PASSWD=$2;
-sudo -u ${USER} psql --quiet --tuples-only --dbname=${DB} <<EOF
+sudo -u ${DBUSER} psql --quiet --tuples-only --dbname=${DB} <<EOF
 
   SELECT count(id) 
   FROM account 
