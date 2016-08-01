@@ -197,7 +197,7 @@ permitted to issue this command (and the same for *dropdb*, naturally).
 sudo -u postgres createdb test
 ```
 
-*Postgres* is a normal Linux user (but a superuser for the database system) that was created during the installation: ``grep postgres /etc/passwd`` yields:
+*Postgres* is a normal Linux user (but a superuser for the database system) that was created during the installation: `grep postgres /etc/passwd` yields:
 
 ```
 postgres:x:123:131:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
